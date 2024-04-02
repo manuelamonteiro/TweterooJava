@@ -10,6 +10,8 @@ import com.tweteroo.api.exceptions.UserNotFoundException;
 import com.tweteroo.api.models.UserModel;
 import com.tweteroo.api.repositories.UserRepository;
 
+import lombok.NonNull;
+
 @Service
 public class UserService {
 	final UserRepository userRepository;
@@ -22,7 +24,7 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public UserModel findById(Long id) {
+	public UserModel findById(@NonNull Long id) {
 		return userRepository.findById(id).orElseThrow(
 				() -> new UserNotFoundException("User not found!"));
 	}
@@ -44,7 +46,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(@NonNull Long id) {
 		this.findById(id);
 		userRepository.deleteById(id);
 	}
