@@ -29,7 +29,7 @@ public class UserModel {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE) // Estratégia gerar IDs
 	private Long id;
 
-	@Column(length = 150, nullable = false) // Coluna da tabela + constraints
+	@Column(length = 100, nullable = false) // Coluna da tabela + constraints
 	private String username;
 
 	@Column(nullable = false)

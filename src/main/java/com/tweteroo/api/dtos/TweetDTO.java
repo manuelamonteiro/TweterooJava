@@ -10,7 +10,7 @@ import lombok.Data;
 public class TweetDTO {
 
 	@NotNull
-	private Integer userId;
+	private Long userId;
 
 	@NotBlank
 	private String text;
