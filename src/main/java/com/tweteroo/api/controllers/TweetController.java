@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +27,18 @@ public class TweetController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Object> getUsers() {
+	public ResponseEntity<Object> getTweets() {
 		List<TweetModel> users = tweetService.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(users);
 	}
 
+	@GetMapping("/{userId}")
+	public ResponseEntity<Object> getTweetByUser(@PathVariable("userId") Long userId) {
+		return ResponseEntity.status(HttpStatus.OK).body(userId);
+	}
+
 	@PostMapping
-	public ResponseEntity<Object> createUser(@RequestBody @Valid TweetDTO body) {
+	public ResponseEntity<Object> createTweet(@RequestBody @Valid TweetDTO body) {
 		TweetModel tweet = tweetService.save(body);
 		return ResponseEntity.status(HttpStatus.CREATED).body(tweet);
 	}
